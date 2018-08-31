@@ -1,8 +1,14 @@
 $(() => {
-  $('#txtInsertDevice').click(insertDevice);
-  $('#btnShowInsertDeviceModal').click(showModalInsertDevice);
+  $('#btnInsertDevice').click(insertDevice);
+  $('#txtInsertSerial').on('input', e => {
+    let val = e.target.value;
+    if(val.length < 13) return;
+    else insertDevice();
+  })
   showDevices();
 })
+
+let isInserted = false;
 
 function showModalInsertDevice(){
   $('#txtInsertCode').val('');
@@ -94,7 +100,9 @@ function showPagination(data){
 
 async function showDevices(){
   let data = await Service.getDataDevice();
+  console.log(data);
   if(data) showPagination(data);
+
   else {
     resetTblAssets();
     showAlertError("No data available", "", 3000);

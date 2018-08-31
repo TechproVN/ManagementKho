@@ -1,26 +1,20 @@
 $(() => {
-  $('#txtCode_1').focus();
-  $('#txtCode_1').on('input', compareCode);
-  $('#txtCode_2').on('input', compareCode);
+  $('#txtProCode').focus();
+  $('#txtSerial').on('input', compareCode);
 })
 
-let checkedAt = 1;
 
 async function compareCode() {
-  if(checkedAt == 1) {
-    checkedAt = 2;
-    $('#txtCode_2').focus();
-  }else{
-    checkedAt = 1;
-    $('#txtCode_1').focus();
-  }
-  let code1 = $('#txtCode_1').val();
-  let code2 = $('#txtCode_2').val();
-  if(code1 == '') return;
-  if (code1 == code2) {
-    showAlertSuccess('Codes are the same', '', 500);
-    $('#txtCode_1').val('').focus()
-    $('#txtCode_2').val('')
-    checkedAt = 1;
+  let proCode = $('#txtProCode').val();
+  let serial = $('#txtSerial').val();
+  if(serial.length < 12) return;
+  if(proCode.trim() == '') return;
+  let dotIndex = proCode.indexOf(':');
+  if(dotIndex == -1) return;
+  if (proCode.substring(dotIndex + 1) == serial) {
+    let msg = `${proCode} trùng với ${serial}`
+    showAlertSuccess(msg , '',);
+    $('#txtProCode').val('').focus()
+    $('#txtSerial').val('')
   }
 }

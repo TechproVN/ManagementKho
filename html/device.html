@@ -44,24 +44,24 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active-menu-item">
-            <a class="nav-link" href="product.html">
-              <i class="fa fa-home icon-navbar"></i>
-              <span class="trn">Product</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="device.html">
-              <i class="fa fa-street-view icon-navbar"></i>
-              <span class="trn">Device</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="checking-code.html">
-              <i class="fa fa-exclamation-triangle icon-navbar"></i>
-              <span class="trn">Check Code</span>
-            </a>
-          </li>
+            <li class="nav-item active-menu-item">
+                <a class="nav-link" href="product.html">
+                  <i class="fa fa-home icon-navbar"></i>
+                  <span class="trn">Sản phẩm</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="device.html">
+                  <i class="fa fa-street-view icon-navbar"></i>
+                  <span class="trn">Thiết bị</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="checking-code.html">
+                  <i class="fa fa-exclamation-triangle icon-navbar"></i>
+                  <span class="trn">Kiểm tra mã</span>
+                </a>
+              </li>
           
           <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -106,7 +106,20 @@
           <div class="card-body custom-card-body">
             <div class="row mt-3">
               <div class="col-12">
-                <button class="btn btn-custom bg-main-color pull-right trn" id="btnShowInsertDeviceModal">Insert</button>
+                <div class="form-group">
+                  <label>Product Code</label>
+                  <input type="text" class="form-control form-control-sm" placeholder="Product Code" id="txtInsertCode">
+                </div>
+                <div class="form-group">
+                  <label>Serial Number</label>
+                  <input type="text" class="form-control form-control-sm" placeholder="Serial Number" id="txtInsertSerial">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+
+              <div class="col-12">
+                <button class="btn btn-custom bg-main-color pull-right trn" id="btnInsertDevice">Insert</button>
               </div>
             </div>
           </div>
@@ -154,19 +167,7 @@
                 </button>
               </div>
               <div class="modal-body">
-               <div class="row">
-                 <div class="col-12">
-                   <div class="form-group">
-                     <label>Product Code</label>
-                     <input type="text" class="form-control" placeholder="Product Code" id="txtInsertCode">
-                   </div>
-                   <div class="form-group">
-                    <label>Serial Number</label>
-                    <input type="text" class="form-control" placeholder="Serial Number" id="txtInsertSerial">
-                  </div>
-                  <button class="btn btn-success btn-custom pull-right" id="txtInsertDevice">Save</button>
-                 </div>
-               </div>
+              
               </div>
               <!-- <div class="modal-footer">
                 <button type="button" class="btn btn-custom bg-main-color trn" data-dismiss="modal">Close</button>

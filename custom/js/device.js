@@ -77,8 +77,10 @@ async function insertDevice(){
   let res = await Service.updateDevice(sentData);
   let { Result } = JSON.parse(res)[0];
   console.log(res);
-  if(Result != 1) 
-    return showAlertError('Không thể thêm thiết bị!!!', '', 4000);
+  if(Result != 1) {
+    showAlertError('Không thể thêm thiết bị!!!', '', 1000);
+    $('#txtInsertSerial').val('').focus();
+  }
   showAlertSuccess('Thêm thành công!!!', '', 4000);
   clearInputInsertDevice();
   showDevices();

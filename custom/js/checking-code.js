@@ -1,6 +1,10 @@
 $(() => {
   $('#txtProCode').focus();
-  $('#txtSerial').on('input', compareCode);
+  $('#txtSerial').on('input', () => {
+    setTimeout(() => {
+      compareCode();
+    }, 50);
+  });
 })
 
 async function compareCode() {

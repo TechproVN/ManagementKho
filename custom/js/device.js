@@ -1,19 +1,71 @@
 $(() => {
   // $('#btnInsertDevice').click(insertDevice);
   $('#txtInsertSerial').on('input', e => {
-    let val = e.target.value;
-    if(val.length < 13) return;
-    else insertDevice();
+    setTimeout(() => {
+      insertDevice();
+    }, 50);
   })
+  $('#btnExport').click(exportToExxcel)
   showDevices();
 })
 
-let isInserted = false;
+let arrCurrentDevices = [];
 
 function showModalInsertDevice(){
   $('#txtInsertCode').val('');
   $('#txtInsertSerial').val('');
   $('#modalInsert').modal('show');
+}
+
+function renderExportTbl(){
+  let $table = $(`#tblDeviceExport`);
+  $table.html('');
+  let $thead = $('<thead class="custom-table-header"></thead>');
+  let $tbody = $('<tbody></tbody>');
+
+  $thead.html(
+    `
+    <tr>
+      <th class="trn">Tên hàng</th>
+      <th class="trn">Tên nhà SX</th>
+      <th class="trn">Loại hàng hóa</th>
+      <th class="trn">Lô nhập khẩu</th>
+      <th class="trn">Thông số KT</th>
+    </tr>
+  `)
+  if (arrCurrentDevices) {
+    arrCurrentDevices.forEach((device, index) => {
+      const { sProductCode, sProductName, sVendorName, sCountryName, sLocationName, sSerialNumber, sQrCode } = device
+      $tbody.append(`
+        <tr>
+          <td>${sProductCode} - ${sProductName}</td>
+          <td>${sVendorName} - ${sCountryName}</td>
+          <td>${sProductName}</td>
+          <td>2017</td>
+          <td>Xem tài liệu đính kèm</td>
+        </tr>
+      `)
+    })
+  }
+
+  $table.append($thead).append($tbody);
+}
+
+function exportToExxcel(){
+  renderExportTbl();
+  // $('#modalExport').modal('show');
+  setTimeout(() => {
+    $("#tblDeviceExport").table2excel({
+      // exclude CSS class
+      // exclude: ".noExl",
+      name: "Report",
+      filename: "data-device",//do not include extension
+      // fileext: ".xls",
+      // exclude_img: true,
+      // exclude_links: true,
+      // exclude_inputs: true
+    });
+  }, 200);
 }
 
 async function insertDevice(){
@@ -109,9 +161,9 @@ function showPagination(data){
 
 async function showDevices(){
   let data = await Service.getDataDevice();
+  arrCurrentDevices = data;
   console.log(data);
   if(data) showPagination(data);
-
   else {
     resetTblAssets();
     showAlertError("Không có data", "", 3000);

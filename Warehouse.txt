@@ -1,0 +1,17 @@
+1. Get Product:
+	URL: 
+		http://115.79.27.219/Warehouse/GetDataProduct.php
+	Parameter: 
+		None
+
+1. Get Device
+	URL: 
+		http://115.79.27.219/Warehouse/GetDataDevice.php
+	Parameter: 
+		None
+		
+2. Insert Device
+	URL:
+		http://115.79.27.219/Warehouse/UpdateDevice.php
+	Parameter: 
+		{"sProductCode":"100R-IDC", "sSerialNumber":"123564778333354368"}

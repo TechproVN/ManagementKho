@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- font awesome css -->
+  <link rel="stylesheet" href="../plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <!-- Bootstrap core css -->
+  <link rel="stylesheet" href="../MDB Free/css/bootstrap.min.css">
+
+  <!-- Meterial Design Bootstrap -->
+  <link rel="stylesheet" href="../MDB Free/css/mdb.min.css">
+
+  <!-- datepicker css -->
+  <link rel="stylesheet" href="../plugins/bootstrap-datetimepicker/css/bootstrap-datepicker3.min.css">
+
+  <!-- bootstrap datetime picker css -->
+  <link rel="stylesheet" href="../plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+
+  <!-- custom main css -->
+  <link rel="stylesheet" href="../custom/css/main.css">
+
+  <!-- main view custom css -->
+  <link rel="stylesheet" href="../custom/css/mainView.css">
+
+  <title>Checking Code</title>
+</head>
+
+<body>
+  <!-- navbar start-->
+  <nav class="navbar navbar-expand-lg bg-main-color white-text" style="padding-top: 0; padding-bottom: 0">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <i class="fa fa-shield icon-custom" style="color: whitesmoke"></i>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars icon-custom" style="color: white"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active-menu-item">
+            <a class="nav-link" href="product.html">
+              <i class="fa fa-home icon-navbar"></i>
+              <span class="trn">Product</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="device.html">
+              <i class="fa fa-street-view icon-navbar"></i>
+              <span class="trn">Device</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="checking-code.html">
+              <i class="fa fa-exclamation-triangle icon-navbar"></i>
+              <span class="trn">Check Code</span>
+            </a>
+          </li>
+
+          <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-cog icon-navbar"></i>
+              <span class="trn">Settings</span>
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item trn" href="managepoint.html">Create Check Points</a>
+              <a class="dropdown-item trn" href="managegroup.html">Create Group-guard</a>
+              <a class="dropdown-item trn" href="manageguard.html">Security Guard Profile</a>
+              <a class="dropdown-item trn" href="managezone.html">Create Zone</a>
+              <a class="dropdown-item trn" href="manageroute.html">Create Route</a>
+             
+              <a class="dropdown-item trn" href="manageasset.html">Create Asset</a>
+              <a class="dropdown-item trn" href="managedevice.html">Create Device</a>
+              <a class="dropdown-item trn" href="manageincident.html">Define Incidents</a>
+            </div>
+          </li> -->
+        </ul>
+        <!-- <ul class="navbar-nav">
+          <button class="btn custom-btn bg-main-color trn" id="changeLanguage">English</button>
+
+        </ul> -->
+      </div>
+    </div>
+  </nav>
+  <!-- navbar end -->
+  <h1 class="text-center text-white py-2 mt-4" style="background-color: darkolivegreen;">Checking Code</h1>
+  <div class="container">
+    
+    <div class="row" style="margin-top: 100px;">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="" class="font-weight-bold" style="font-size: 1.6em">Code 1</label>
+          <input type="text" placeholder="Code 1" class="form-control" id="txtCode_1">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="" class="font-weight-bold" style="font-size: 1.6em">Code 2</label>
+          <input type="text" placeholder="Code 2" class="form-control" id="txtCode_2">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Google Map API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2JtN93nl-xarvyDCUu5QOVtFNMJk0S-A"></script>
+
+  <!-- JQuery core -->
+  <script src="../MDB Free/js/jquery-3.3.1.min.js"></script>
+
+  <!-- jQuery translate.js -->
+  <script src="../plugins/translate.js-master/jquery.translate.js"></script>
+
+  <!-- popper js core -->
+  <script src="../MDB Free/js/popper.min.js"></script>
+
+  <!-- bootstrap js core -->
+  <script src="../MDB Free/js/bootstrap.min.js"></script>
+
+  <!-- Meterial Design Bootstrap JS -->
+  <script src="../MDB Free/js/mdb.min.js"></script>
+
+  <!-- bootstrap datepicker js -->
+  <script src="../plugins/bootstrap-datetimepicker/js/bootstrap-datepicker.min.js"></script>
+
+  <!-- datetimepicker js -->
+  <script src="../plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+  <!-- sweetalert -->
+  <script src="../plugins/sweetalert/js/sweetalert.min.js"></script>
+
+  <!-- custom main.js -->
+  <script src="../custom/js/main.js"></script>
+
+  <!-- service request -->
+  <script src="../custom/js/service.js"></script>
+
+  <!-- validation js -->
+  <script src="../custom/js/validation.js"></script>
+
+  <!-- translate js -->
+  <script src="../custom/js/translate.js"></script>
+
+  <!-- mainView js -->
+  <script src="../custom/js/checking-code.js"></script>
+
+</body>
+
+</html>

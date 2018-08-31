@@ -1,5 +1,5 @@
 $(() => {
-  $('#btnInsertDevice').click(insertDevice);
+  // $('#btnInsertDevice').click(insertDevice);
   $('#txtInsertSerial').on('input', e => {
     let val = e.target.value;
     if(val.length < 13) return;
@@ -23,9 +23,18 @@ async function insertDevice(){
   if(!valid) return showAlertError('', msgErr);
   let sentData = { sProductCode, sSerialNumber };
   let res = await Service.updateDevice(sentData);
+  let { Result } = JSON.parse(res)[0];
   console.log(res);
-  showAlertSuccess('Update Successfully!!!', '', 4000);
+  if(Result != 1) 
+    return showAlertError('Không thể thêm thiết bị!!!', '', 4000);
+  showAlertSuccess('Thêm thành công!!!', '', 4000);
+  clearInputInsertDevice();
   showDevices();
+}
+
+function clearInputInsertDevice(){
+  $('#txtInsertSerial').val('');
+  $('#txtInsertCode').val('');
 }
 
 function checkValidate(code, serial){
@@ -33,11 +42,11 @@ function checkValidate(code, serial){
   let valid = true;
   if(!Validation.checkNotEmpty(code)){
     valid = false;
-    msgErr += 'Code must be filled!!\n'
+    msgErr += 'Code không được để trống!!\n'
   }
   if(!Validation.checkNotEmpty(serial)){
     valid = false;
-    msgErr += 'Serial must be filled!!\n'
+    msgErr += 'Serial không được để trống!!\n'
   }
   return { msgErr, valid };
 }
@@ -51,12 +60,12 @@ function renderDeviceTable(data){
     `
     <tr>
       <th class="trn">#</th>
-      <th class="trn">Product code</th>
-      <th class="trn">Product name</th>
-      <th class="trn">Vendor name</th>
-      <th class="trn">Country</th>
-      <th class="trn">Location</th>
-      <th class="trn">Serial</th>
+      <th class="trn">Mã sản phẩm</th>
+      <th class="trn">Tên sản phẩm</th>
+      <th class="trn">Tên doanh nghiệp</th>
+      <th class="trn">Quốc gia</th>
+      <th class="trn">Vị trí</th>
+      <th class="trn">Só Seri</th>
       <th class="trn">QRCode</th>
     </tr>
   `)
@@ -83,7 +92,7 @@ function renderDeviceTable(data){
 }
 
 function showPagination(data){
-  $('#totalDevices').html(`<strong class="trn">Total Devices</strong>: ${data.length}`);
+  $('#totalDevices').html(`<strong class="trn">Sỗ thiết bị</strong>: ${data.length}`);
   $('#pagingControl').pagination({
     dataSource: data,
     pageSize: 10,
@@ -105,7 +114,7 @@ async function showDevices(){
 
   else {
     resetTblAssets();
-    showAlertError("No data available", "", 3000);
+    showAlertError("Không có data", "", 3000);
   }
   setDefaultLang();
 }

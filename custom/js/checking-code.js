@@ -3,7 +3,6 @@ $(() => {
   $('#txtSerial').on('input', compareCode);
 })
 
-
 async function compareCode() {
   let proCode = $('#txtProCode').val();
   let serial = $('#txtSerial').val();
@@ -16,5 +15,5 @@ async function compareCode() {
     showAlertSuccess(msg , '',);
     $('#txtProCode').val('').focus()
     $('#txtSerial').val('')
-  }
+  }else $('#txtSerial').val('')
 }

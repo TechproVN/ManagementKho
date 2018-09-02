@@ -8,6 +8,7 @@
 	}
 	$query = "CALL proc_GetDataProduct()";
 	//echo $query;
+	mysqli_set_charset($link,"utf8"); 
 	$rows = array();
 	if ($result = mysqli_query($link, $query)) 
 	{

@@ -7,6 +7,7 @@
 		exit();
 	}
 	$query = "CALL proc_GetDataDevice()";
+	mysqli_set_charset($link,"utf8"); 
 	$rows = array();
 	if ($result = mysqli_query($link, $query)) 
 	{

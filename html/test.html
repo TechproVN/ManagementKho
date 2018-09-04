@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Barcode Scanner</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script>
+
+        //setup before functions
+        var typingTimer;                //timer identifier
+        var doneTypingInterval = 1000;  //time in ms, 1 second for example
+
+
+        // we have the info we need.
+        var barcodeEntered = function() {
+          var text = $("#myInput").val();
+          alert('We will now process barcode:' + text);
+
+          // Set it up for another read
+          $("#myInput").val('');
+          $("#myInput").focus();
+          setTimeout(timerEvent, doneTypingInterval);
+        }
+
+        // Check and see if there's anything in the textbox (there might not be a keydown event)
+        var timerEvent =function(){
+            var text = $("#myInput").val();
+            if(text.length > 5){
+                barcodeEntered();
+            } else{
+                setTimeout(timerEvent, doneTypingInterval);
+                $("#myInput").focus();
+            }
+        };
+
+
+        $(function(){
+            setTimeout(timerEvent, doneTypingInterval);
+            $("#myInput").focus();
+        });
+
+    </script>
+
+
+</head>
+<body>
+<div class="container">
+    <h1>Please scan your barcode</h1>
+
+    <!-- This is hidden from the screen. -->
+    <input id="myInput" type="text" style="width: 100px; position: absolute; left: -100px;" />
+
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>

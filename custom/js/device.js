@@ -1,15 +1,21 @@
 $(() => {
   // $('#btnInsertDevice').click(insertDevice);
-  $('#txtInsertSerial').on('input', e => {
-    setTimeout(() => {
-      insertDevice();
-    }, 50);
-  })
+  // $('#txtInsertSerial').on('input', e => {
+  //   setTimeout(() => {
+  //     insertDevice();
+  //   });
+  // })
+  
   $('#btnExport').click(exportToExxcel)
   showDevices();
 })
 
 let arrCurrentDevices = [];
+let interval = setInterval(insertDevice, 2000);
+
+function setIntervalForInsert(){
+  interval = setInterval(insertDevice, 2000);
+}
 
 function showModalInsertDevice(){
   $('#txtInsertCode').val('');
@@ -71,8 +77,8 @@ function exportToExxcel(){
 async function insertDevice(){
   let sProductCode = $('#txtInsertCode').val();
   let sSerialNumber = $('#txtInsertSerial').val();
-  let { msgErr, valid } = checkValidate(sProductCode, sSerialNumber);
-  if(!valid) return showAlertError('', msgErr);
+  let { valid } = checkValidate(sProductCode, sSerialNumber);
+  if(!valid) return;
   let sentData = { sProductCode, sSerialNumber };
   let res = await Service.updateDevice(sentData);
   let { Result } = JSON.parse(res)[0];
@@ -81,13 +87,15 @@ async function insertDevice(){
     showAlertError('Không thể thêm thiết bị!!!', '', 1000);
     $('#txtInsertSerial').val('').focus();
   }
-  showAlertSuccess('Thêm thành công!!!', '', 4000);
+  clearInterval(interval);
+  showAlertSuccess('Thêm thành công!!!', '', 2000);
   clearInputInsertDevice();
   showDevices();
+  setIntervalForInsert();
 }
 
 function clearInputInsertDevice(){
-  $('#txtInsertSerial').val('');
+  $('#txtInsertSerial').val('').focus();
   $('#txtInsertCode').val('');
 }
 
@@ -119,7 +127,7 @@ function renderDeviceTable(data){
       <th class="trn">Tên doanh nghiệp</th>
       <th class="trn">Quốc gia</th>
       <th class="trn">Vị trí</th>
-      <th class="trn">Só Seri</th>
+      <th class="trn">Số Seri</th>
       <th class="trn">QRCode</th>
     </tr>
   `)

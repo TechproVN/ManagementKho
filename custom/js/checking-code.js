@@ -1,16 +1,14 @@
 $(() => {
   $('#txtProCode').focus();
   $('#txtSerial').on('input', () => {
-    setTimeout(() => {
-      compareCode();
-    }, 50);
+    compareCode();
   });
 })
 
 async function compareCode() {
   let proCode = $('#txtProCode').val();
   let serial = $('#txtSerial').val();
-  if(serial.length < 12) return;
+  if(serial.trim() == '') return;
   if(proCode.trim() == '') return;
   let dotIndex = proCode.indexOf(':');
   if(dotIndex == -1) return;

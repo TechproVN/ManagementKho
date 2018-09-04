@@ -2,33 +2,77 @@ $(() => {
   showProducts();
 })
 
+
+
+function renderProductTable(data) {
+  let $table = $(`<table class="table table-hover table-striped table-condensed text-center custom-table min-height-table" id="tblProduct"></table>`)
+  let $thead = $('<thead class="custom-table-header"></thead>');
+  let $tbody = $('<tbody></tbody>');
+
+  $thead.html(
+    `
+    <tr>
+      <th class="trn">#</th>
+      <th class="trn">Mã sản phẩm</th>
+      <th class="trn">Tên sản phẩm</th>
+      <th class="trn">Tên doanh nghiệp</th>
+      <th class="trn">Quốc gia</th>
+      <th class="trn">Mô tả</th>
+      <th class="trn">Số lượng hiện tại</th>
+      <th class="trn">Số lượng</th>
+    </tr>
+  `)
+  if (data) {
+    data.forEach((product, index) => {
+      const {dQuantity, dQuantityCurrent, iProductID, sCountryName, sProductCode, sProductDescription, sProductName, sVendorName } = product
+      $tbody.append(`
+        <tr>
+          <td>${index + 1}</td>
+          <td>${sProductCode}</td>
+          <td class="text-left">${sProductName}</td>
+          <td>${sVendorName}</td>
+          <td>${sCountryName}</td>
+          <td>${sProductDescription}</td>
+          <td>${dQuantityCurrent}</td>
+          <td>${dQuantity}</td>
+        </tr>
+      `)
+    })
+  }
+
+  $table.append($thead).append($tbody);
+  return $table;
+}
+
+function showPagination(data){
+  $('#totalProducts').html(`<strong class="trn">Sỗ sản phẩm</strong>: ${data.length}`);
+  $('#pagingControl').pagination({
+    dataSource: data,
+    pageSize: 10,
+    className: 'paginationjs-theme-yellow paginationjs-big',
+    showGoInput: true,
+    showGoButton: true,
+    callback: function (data, pagination) {
+      let $table = renderProductTable(data);
+      $('.card-product .table-responsive').html($table);
+      setDefaultLang();
+    }
+  })
+}
+
 async function showProducts(){
   let data = await Service.getDataProduct();
   console.log(data);
+  if(data) showPagination(data);
+  else {
+    resetTblAssets();
+    showAlertError("Không có data", "", 3000);
+  }
+  setDefaultLang();
 }
 
-function renderProductTable(data) {
-  let $table = $('#tblProduct')
-  $table.html('');
-  let $thead = $('<thead class="custom-table-header"></thead>');
-  let $tbody = $('<tbody></tbody>');
-  $thead.html(`
-    <tr>
-      <th class="trn">#</th>
-    </tr>
-  `)
-  let $checkboxHead = $thead.find('.checkbox-all-guards');
-  if (data) {
-    data.forEach((product, index) => {
-      const {  } = product
-      
-      $tbody.append(`
-        <tr>
-          <td class="trn"></td>
-        </tr>
-      `)
-      
-    })
-  }
-  $table.append($thead).append($tbody);
+function resetTblAssets(){
+  $('#totalProducts').html('');
+  $('#pagingControl').html('');
+  $('#tblProduct').html('');
 }

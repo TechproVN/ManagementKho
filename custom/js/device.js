@@ -85,18 +85,16 @@ async function insertDevice(){
   console.log(res);
   if(Result != 1) {
     showAlertError('Không thể thêm thiết bị!!!', '', 1000);
-    $('#txtInsertSerial').val('').focus();
   }
+  $('#txtInsertSerial').val('').focus();
   clearInterval(interval);
   showAlertSuccess('Thêm thành công!!!', '', 2000);
-  clearInputInsertDevice();
   showDevices();
   setIntervalForInsert();
 }
 
 function clearInputInsertDevice(){
   $('#txtInsertSerial').val('').focus();
-  $('#txtInsertCode').val('');
 }
 
 function checkValidate(code, serial){

@@ -20,6 +20,7 @@ function renderProductTable(data) {
       <th class="trn">Mô tả</th>
       <th class="trn">Số lượng hiện tại</th>
       <th class="trn">Số lượng</th>
+      <th class="trn"></th>
     </tr>
   `)
   if (data) {
@@ -35,14 +36,35 @@ function renderProductTable(data) {
           <td>${sProductDescription}</td>
           <td>${dQuantityCurrent}</td>
           <td>${dQuantity}</td>
+          <td>
+            <div class="btn-group">
+              <button type="button" class="btn btn-custom bg-main-color btn-custom-small dropdown-toggle trn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+              <div class="dropdown-menu" >
+                <button class="btn btn-custom bg-success btn-custom-small dropdown-item btnShowAddModal trn">Add</button>
+                <button class="btn btn-custom bg-danger btn-custom-small dropdown-item btnLock trn">Lock</button>
+              </div>
+            </div>
+          </td>
         </tr>
       `)
+      $tbody.find('.btnLock').last().click(() => {
+        lockProduct(product);
+      })
+      $tbody.find('.btnShowAddModal').last().click(() => {
+        showAddModal(product);
+      })
     })
   }
 
   $table.append($thead).append($tbody);
   return $table;
 }
+
+function lockProduct(product){}
+
+
+function showAddModal(product){}
+
 
 function showPagination(data){
   $('#totalProducts').html(`<strong class="trn">Sỗ sản phẩm</strong>: ${data.length}`);

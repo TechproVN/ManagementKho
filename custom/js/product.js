@@ -1,8 +1,10 @@
 $(() => {
   showProducts();
+  $('#txtFilterProduct').on('input', filterProducts);
 })
 
-
+let arrProducts = [];
+let arrFilteredProducts = [];
 
 function renderProductTable(data) {
   let $table = $(`<table class="table table-hover table-striped table-condensed text-center custom-table min-height-table" id="tblProduct"></table>`)
@@ -82,13 +84,27 @@ function showPagination(data){
   })
 }
 
+function filterProducts(e){
+  let val = e.target.value;
+  if(val.trim() == '') return showPagination(arrProducts);
+  let arr = arrProducts.filter(p => {
+    val = removeUnicode(val).toLowerCase();
+    let proName = removeUnicode(p.sProductName).toLowerCase();
+    return proName.indexOf(val) > -1;      
+  })
+  showPagination(arr);
+}
+
 async function showProducts(){
   let data = await Service.getDataProduct();
-  console.log(data);
-  if(data) showPagination(data);
+  if(data) {
+    arrProducts = data;
+    showPagination(data);
+  }
   else {
     resetTblAssets();
     showAlertError("Không có data", "", 3000);
+    arrProducts = [];
   }
   setDefaultLang();
 }

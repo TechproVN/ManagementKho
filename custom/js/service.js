@@ -21,7 +21,6 @@ class Service {
         method: 'post',
         data: null
       });
-      console.log(data);
       return Service.handleData(data);
     } catch (error) {
       return Service.handleError(error);

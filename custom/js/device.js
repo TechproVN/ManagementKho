@@ -5,7 +5,7 @@ $(() => {
   //     insertDevice();
   //   });
   // })
-  
+  $('#txtFilterDevice').on('input', filterDevices);
   $('#btnExport').click(exportToExxcel)
   showDevices();
 })
@@ -183,4 +183,15 @@ function resetTblAssets(){
   $('#totalDevices').html('');
   $('#pagingControl').html('');
   $('#tblDevice').html('');
+}
+
+function filterDevices(e){
+  let val = e.target.value;
+  if(val.trim() == '') return showPagination(arrCurrentDevices);
+  let arr = arrCurrentDevices.filter(device => {
+    let deviceName = removeUnicode(device.sProductName).toLowerCase();
+    val = removeUnicode(val).toLowerCase();
+    return deviceName.indexOf(val) > -1;
+  })
+  showPagination(arr);
 }

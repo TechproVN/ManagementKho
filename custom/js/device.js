@@ -32,6 +32,7 @@ function renderExportTbl(){
   $thead.html(
     `
     <tr>
+      <th class="trn">QRCode</th>
       <th class="trn">Tên hàng</th>
       <th class="trn">Tên nhà SX</th>
       <th class="trn">Loại hàng hóa</th>
@@ -44,6 +45,7 @@ function renderExportTbl(){
       const { sProductCode, sProductName, sVendorName, sCountryName, sLocationName, sSerialNumber, sQrCode } = device
       $tbody.append(`
         <tr>
+          <td>${sQrCode}</td>
           <td>${sProductCode} - ${sProductName}</td>
           <td>${sVendorName} - ${sCountryName}</td>
           <td>${sProductName}</td>
